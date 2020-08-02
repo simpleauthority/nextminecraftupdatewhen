@@ -4,28 +4,30 @@ import cookieParser from 'cookie-parser'
 import createError from 'http-errors'
 import logger from 'morgan'
 
-import homeRouter from './home'
+import homeRouter from './router/home'
+import versionsRouter from './router/versions'
 
-const app = express();
+const app = express()
 
 app.engine('combyne', combynExpress())
 
 app.set('views', './app/views')
 app.set('view engine', 'combyne')
 
-app.use(logger('dev'));
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(logger('dev'))
+app.use(express.urlencoded({ extended: false }))
+app.use(cookieParser())
 
-app.use(homeRouter());
+app.use(homeRouter())
+app.use(versionsRouter())
 
 app.use(function(req, res, next) {
-  next(createError(404));
+  next(createError(404))
 });
 
 app.use(function(err, req, res, next) {
-  const status = err.status || 500;
-  const error = req.app.get('env') === 'development' ? err : undefined;
+  const status = err.status || 500
+  const error = req.app.get('env') === 'development' ? err : undefined
 
   let json = { status }
   if (error) {
@@ -39,4 +41,4 @@ app.use(function(err, req, res, next) {
   res.json(json)
 });
 
-export default app;
+export default app
