@@ -1,6 +1,6 @@
 import express from 'express'
-import moment, { version } from 'moment'
-import version_dates from './version_dates'
+import moment from 'moment'
+import versions from './versions'
 
 export default function() {
   const router = express.Router()
@@ -8,15 +8,15 @@ export default function() {
   const daysBetweenEachVersion = []
   
   let previous = undefined
-  for (const version_date of version_dates) {
+  for (const version of versions) {
     if (!previous) {
       // first version, there are 0 days between the "previous" release and this one, so we are skipping it
-      previous = moment(version_date)
+      previous = version
       continue
     }
 
-    const current = moment(version_date)
-    daysBetweenEachVersion.push(current.diff(previous, 'days'))
+    const current = version
+    daysBetweenEachVersion.push(current.date.diff(previous.date, 'days'))
 
     // prepare for next iteration
     previous = current
@@ -25,22 +25,34 @@ export default function() {
   const avgDays = calcAvg(daysBetweenEachVersion)
   const stdDev = calcStdDev(daysBetweenEachVersion, avgDays)
 
-  const lastReleaseDaysAgo = moment().diff(previous, 'days')
+  const lastReleaseDaysAgo = moment().diff(previous.date, 'days')
   const avgDiff = avgDays - lastReleaseDaysAgo
   const stdDevDiff = stdDev - lastReleaseDaysAgo
-  const diffSum = avgDiff + stdDevDiff
+
+  let minDays = avgDiff - stdDevDiff;
+  minDays = minDays < 0 ? 0 : minDays;
+
+  const maxDays = avgDiff + stdDevDiff;
 
   router.get('/', function(req, res, next) {
     res.render('home', { 
       avgDays, 
       stdDev, 
+      lastReleaseName: previous.name,
       lastReleaseDaysAgo,
-      avgDiff,
-      diffSum
+      minDays,
+      maxDays,
     })
   })
 
   return router
+}
+
+function momentify(version) {
+  return {
+    name: version.name,
+    date: moment(version.date)
+  }
 }
 
 // simple average of input array, rounded to nearest int
