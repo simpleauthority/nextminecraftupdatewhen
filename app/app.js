@@ -1,0 +1,42 @@
+import express from 'express'
+import combynExpress from 'combynexpress'
+import cookieParser from 'cookie-parser'
+import createError from 'http-errors'
+import logger from 'morgan'
+
+import homeRouter from './home'
+
+const app = express();
+
+app.engine('combyne', combynExpress())
+
+app.set('views', './app/views')
+app.set('view engine', 'combyne')
+
+app.use(logger('dev'));
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+app.use(homeRouter());
+
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+
+app.use(function(err, req, res, next) {
+  const status = err.status || 500;
+  const error = req.app.get('env') === 'development' ? err : undefined;
+
+  let json = { status }
+  if (error) {
+    json = {
+      ...json,
+      error: error.message
+    }
+  }
+
+  res.status(status)
+  res.json(json)
+});
+
+export default app;

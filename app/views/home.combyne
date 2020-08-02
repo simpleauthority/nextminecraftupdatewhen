@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>Next Minecraft Update When?!?!?</title>
+        <link href="//fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@400;700&display=swap" rel="stylesheet">
+        <style>
+            html, body {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                height: 100vh;
+                width: 100vw;
+                background-color: #220c4f;
+                color: #eee;
+                font-family: 'Balsamiq Sans';
+                font-weight: 400;
+            }
+
+            body .please-im-begging-you {
+                font-weight: 700;
+                text-decoration: underline;
+            }
+
+            body a {
+                color: #eee;
+                text-decoration: none;
+            }
+
+            body a:hover, body a:active, body a:focus {
+                color: #ccc;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>Mojang releases a new Minecraft version every {{avgDays}} days on average with a standard deviation of {{stdDev}} days.</h1>
+            <h1>Since the last release was {{lastReleaseDaysAgo}} days ago, the next release will probably be within the next {%if avgDiff > 0%}{{avgDiff}} to{%endif%} {{stdDevDiff}} days.</h1>
+            <h4>Or, you know, maybe not. It'll be ready when it's ready. You don't like bugs, do you?</h4>
+            <h4>Seriously, this is just looking at historical dates. <span class="please-im-begging-you">We can't predict the future, so please don't ask us to.</span></h4>
+            <p><small>Made by <a href="https://github.com/simpleauthority" target="_blank">simple</a></small></p>
+        </div>
+    </body>
+</html>

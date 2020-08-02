@@ -1,0 +1,56 @@
+{
+  "name": "nextminecraftupdatewhen",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "start": "yarn run prod",
+    "prod": "NODE_ENV=production yarn run build && NODE_ENV=production yarn run server",
+    "dev": "NODE_ENV=development yarn run build && DEBUG=nextminecraftupdatewhen:server NODE_ENV=development yarn run server",
+    "build": "yarn run clean && yarn run transpile",
+    "clean": "rimraf dist",
+    "transpile": "babel ./app --out-dir dist",
+    "server": "node ./dist/bin/www",
+    "watch": "nodemon"
+  },
+  "author": "Jacob Andersen",
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-transform-runtime",
+        {
+          "regenerator": true
+        }
+      ]
+    ]
+  },
+  "nodemonConfig": {
+    "exec": "yarn run dev",
+    "watch": [
+      "app/*"
+    ]
+  },
+  "dependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/runtime": "^7.10.3",
+    "axios": "^0.19.2",
+    "combyne": "^2.0.0",
+    "combynexpress": "^3.0.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "moment": "^2.27.0",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.4",
+    "rimraf": "^3.0.2"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.10.3"
+  }
+}
