@@ -43,7 +43,6 @@ function calcAvgDays(arr) {
 // square-root of average of square of each number minus average 
 // of original numbers (standard deviation), rounded to nearest int
 function calcStdDev(arr, mu) {
-  console.log(arr)
   return Math.round(Math.sqrt(calcAvgDays(
       arr.map(days => 
         Math.pow(

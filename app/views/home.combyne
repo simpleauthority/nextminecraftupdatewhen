@@ -1,6 +1,12 @@
 <html>
     <head>
         <title>Next Minecraft Update When?!?!?</title>
+        <meta property="og:title" content="Next Minecraft update when?!?!?!" />
+        <meta property="og:description" content="Probably within the next {%if minDays > 0%}{{minDays}} to{%endif%} {{maxDays}} days... (maybe)" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://nextminecraftupdatewhen.com" />
+        <meta property="og:image" content="https://nextminecraftupdatewhen.com/bg.jpg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
         <link href="//fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@400;700&display=swap" rel="stylesheet">
         <style>
             html, body {
