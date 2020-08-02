@@ -1,7 +1,6 @@
 import express from 'express'
 import moment, { version } from 'moment'
 import version_dates from './version_dates'
-import periods from './periods'
 
 export default function() {
   const router = express.Router()
@@ -26,7 +25,7 @@ export default function() {
   const avgDays = calcAvg(daysBetweenEachVersion)
   const stdDev = calcStdDev(daysBetweenEachVersion, avgDays)
 
-  const lastReleaseDaysAgo = daysBetweenEachVersion[daysBetweenEachVersion.length - 1]
+  const lastReleaseDaysAgo = moment().diff(previous, 'days')
   let avgDiff = avgDays - lastReleaseDaysAgo;
   let stdDevDiff = stdDev - lastReleaseDaysAgo;
 
