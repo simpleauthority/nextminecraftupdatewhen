@@ -26,15 +26,9 @@ export default function() {
   const stdDev = calcStdDev(daysBetweenEachVersion, avgDays)
 
   const lastReleaseDaysAgo = moment().diff(previous, 'days')
-  let avgDiff = avgDays - lastReleaseDaysAgo;
-  let stdDevDiff = stdDev - lastReleaseDaysAgo;
-
-  let estimate;
-  if (avgDiff <= 0) {
-    estimate = stdDevDiff;
-  }
-
-
+  const avgDiff = avgDays - lastReleaseDaysAgo
+  const stdDevDiff = stdDev - lastReleaseDaysAgo
+  const diffSum = avgDiff + stdDevDiff
 
   router.get('/', function(req, res, next) {
     res.render('home', { 
@@ -42,7 +36,7 @@ export default function() {
       stdDev, 
       lastReleaseDaysAgo,
       avgDiff,
-      stdDevDiff
+      diffSum
     })
   })
 

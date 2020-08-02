@@ -39,7 +39,7 @@
     <body>
         <div>
             <h1>Mojang releases a new Minecraft version every {{avgDays}} days on average with a standard deviation of {{stdDev}} days.</h1>
-            <h1>Since the last release was {{lastReleaseDaysAgo}} days ago, the next release will probably be within the next {%if avgDiff > 0%}{{avgDiff}} to{%endif%} {{stdDevDiff}} days.</h1>
+            <h1>Since the last release was {{lastReleaseDaysAgo}} days ago, the next release will probably be within the next {%if avgDiff > 0%}{{avgDiff}} to{%endif%} {{diffSum}} days.</h1>
             <h4>Or, you know, maybe not. It'll be ready when it's ready. You don't like bugs, do you?</h4>
             <h4>Seriously, this is just looking at historical dates. <span class="please-im-begging-you">We can't predict the future, so please don't ask us to.</span></h4>
             <p><small>Made by <a href="https://github.com/simpleauthority" target="_blank">simple</a></small></p>
