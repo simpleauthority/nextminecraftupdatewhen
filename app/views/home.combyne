@@ -2,7 +2,7 @@
     <head>
         <title>Minecraft 1.17 Update When?!?!</title>
         <meta property="og:title" content="Minecraft 1.17 Update When?!?!" />
-        <meta property="og:description" content="1.17 will (maybe) be here{%if minDays > 0%} between {{minDays}} and {{maxDays}} {%else%} {{maxDays}} {%endif%}days from now" />
+        <meta property="og:description" content="1.17 will (maybe) be here{%if minDays > 0%} between {{minDays}} and {{maxDays}} {%else%} within {{maxDays}} {%endif%}days from now" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://nextminecraftupdatewhen.com" />
         <meta property="og:image" content="https://nextminecraftupdatewhen.com/bg.jpg" />
@@ -45,7 +45,7 @@
     <body>
         <div>
             <h1>Mojang releases a new major (1.8, 1.12, 1.14, etc) Minecraft version every {{avgDays}} days on average with a standard deviation of {{stdDev}} days.</h1>
-            <h1>Since the last release ({{lastReleaseName}}) was {{lastReleaseDaysAgo}} days ago, the next release will probably arrive between{%if minDays > 0%} {{minDays}} and {{maxDays}} {%else%} {{maxDays}} {%endif%} days from today.</h1>
+            <h1>Since the last release ({{lastReleaseName}}) was {{lastReleaseDaysAgo}} days ago, the next release will probably arrive between{%if minDays > 0%} {{minDays}} and {{maxDays}} {%else%} within {{maxDays}} {%endif%} days from today.</h1>
             <h4>Or, you know, maybe not. It'll be ready when it's ready. You don't like bugs, do you?</h4>
             <h4>Seriously, this is just looking at historical dates. <span class="please-im-begging-you">We can't predict the future, so please don't ask us to.</span></h4>
             <p><small>Made by <a href="https://github.com/simpleauthority" target="_blank">simple</a></small></p>

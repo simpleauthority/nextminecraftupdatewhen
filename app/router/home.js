@@ -13,13 +13,13 @@ export default function() {
 
   const lastRelease = daysBetween[daysBetween.length - 1]
   const lastReleaseDaysAgo = moment().diff(lastRelease.date, 'days')
-  const avgDiff = avgDays - lastReleaseDaysAgo
-  const stdDevDiff = stdDev - lastReleaseDaysAgo
 
-  let minDays = avgDiff - stdDevDiff;
+  let minDays = avgDays - stdDev;
   minDays = minDays < 0 ? 0 : minDays;
+  minDays = minDays === 0 ? 0 : minDays - lastReleaseDaysAgo;
 
-  const maxDays = avgDiff + stdDevDiff;
+  let maxDays = avgDays + stdDev;
+  maxDays = maxDays - lastReleaseDaysAgo;
 
   router.get('/', function(req, res, next) {
     res.render('home', { 
