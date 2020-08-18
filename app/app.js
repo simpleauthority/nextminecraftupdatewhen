@@ -13,6 +13,7 @@ app.engine('combyne', combynExpress())
 
 app.set('views', './app/views')
 app.set('view engine', 'combyne')
+app.disable('view cache')
 
 app.use(logger('dev'))
 app.use(express.urlencoded({ extended: false }))
