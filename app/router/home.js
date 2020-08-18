@@ -21,9 +21,10 @@ export default function() {
   let maxDays = avgDays + stdDev;
   maxDays = maxDays - lastReleaseDaysAgo;
 
-  res.setHeader('Cache-Control', 'no-cache');
 
   router.get('/', function(req, res, next) {
+    res.setHeader('Cache-Control', 'no-cache');
+
     res.render('home', { 
       avgDays, 
       stdDev, 
