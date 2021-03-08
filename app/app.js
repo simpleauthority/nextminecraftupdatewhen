@@ -1,5 +1,6 @@
 import express from 'express'
 import combynExpress from 'combynexpress'
+import nocache from 'nocache'
 import cookieParser from 'cookie-parser'
 import createError from 'http-errors'
 import logger from 'morgan'
@@ -9,12 +10,14 @@ import versionsRouter from './router/versions'
 
 const app = express()
 
+app.disable('view cache')
+
 app.engine('combyne', combynExpress())
 
 app.set('views', './app/views')
 app.set('view engine', 'combyne')
-app.disable('view cache')
 
+app.use(nocache())
 app.use(logger('dev'))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static('public'))
